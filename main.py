@@ -1,6 +1,3 @@
-# model_evaluation.py
-
-# Import necessary libraries
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, HistGradientBoostingClassifier
@@ -8,6 +5,10 @@ from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier
 from catboost import CatBoostClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, roc_curve
+from IPython.display import Image, display
+
+# Colab에서 그래프가 잘 보이도록 설정
+%matplotlib inline
 
 # Load preprocessed data
 X_train = pd.read_csv('X_train.csv')
@@ -67,4 +68,7 @@ plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 plt.title('AUC ROC Curve for Different Models')
 plt.legend(loc='lower right')
-plt.show()
+
+# Save figure and display
+plt.savefig("roc_curve.png")  # 파일로 저장
+display(Image(filename="roc_curve.png"))  # 이미지 표시
